@@ -11,6 +11,6 @@ fact.
 
 ## validation
 
-Use `/opt/homebrew/bin/tidy -quiet -errors index.html` for HTML validation. The
-system `/usr/bin/tidy` is Apple's 2006 build and emits false warnings on modern
-HTML5, Open Graph, and async script syntax.
+Use `/opt/homebrew/bin/tidy -quiet -errors docs/index.html` for HTML validation.
+The system `/usr/bin/tidy` is Apple's 2006 build and emits false warnings on
+modern HTML5, Open Graph, and async script syntax.
