@@ -19,6 +19,34 @@
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
 	gtag('config', 'G-LJ0E6ZHHMM');
+
+	document.addEventListener('click', function(event) {
+		var link = event.target.closest && event.target.closest('a[href]');
+		var section;
+		var list;
+		var url;
+
+		if (!link || typeof gtag !== 'function') {
+			return;
+		}
+
+		url = new URL(link.href, window.location.href);
+		list = link.closest('ul');
+		section = list && list.previousElementSibling ? list.previousElementSibling.textContent.trim() : '';
+
+		gtag('event', 'site_link_click', {
+			send_to: 'G-LJ0E6ZHHMM',
+			link_url: url.href,
+			link_domain: url.hostname,
+			link_text: link.textContent.trim(),
+			link_section: section,
+			clicked_link_url: url.href,
+			clicked_link_domain: url.hostname,
+			clicked_link_text: link.textContent.trim(),
+			clicked_link_section: section,
+			outbound: url.hostname !== window.location.hostname
+		});
+	});
 </script>
 <style>
 	body {
@@ -63,6 +91,7 @@
 
 	<p>References</p>
 	<ul>
+		<li><a href="https://github.com/simonmichael/hledger/pull/2651#issuecomment-5157980679">hledger: keep the account sidebar's scroll position</a></li>
 		<li><a href="https://github.com/aws-samples/sample-OpenClaw-on-AWS-with-Bedrock/pull/81">OpenClaw on AWS: state directory fix</a></li>
 		<li><a href="https://github.com/node-apn/node-apn/pull/663">node-apn: 3.0 release</a></li>
 		<li><a href="https://github.com/parse-community/Governance/pull/3">Parse Community: paid contributors</a></li>
